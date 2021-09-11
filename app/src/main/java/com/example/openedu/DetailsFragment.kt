@@ -1,6 +1,5 @@
 package com.example.openedu
 
-import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
@@ -12,7 +11,7 @@ import com.example.openedu.databinding.FragmentDetailsBinding
 
 class DetailsFragment : Fragment() {
     private var android: Android? = null
-    lateinit var detailsBinding : FragmentDetailsBinding
+    private lateinit var detailsBinding : FragmentDetailsBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

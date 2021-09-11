@@ -12,7 +12,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:fillViewport="true"
-        tools:context=".DetailsActivity">
+        tools:context=".DetailsActivity"
+        tools:ignore="UselessParent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -22,6 +23,7 @@
                 android:id="@+id/background_image"
                 android:layout_width="match_parent"
                 android:layout_height="250dp"
+                android:contentDescription="@string/cd_background_image"
                 android:scaleType="centerCrop"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
@@ -35,6 +37,7 @@
                 android:layout_height="0dp"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="24dp"
+                android:contentDescription="@string/cd_android_logo"
                 android:scaleType="centerCrop"
                 app:layout_constraintDimensionRatio="h,4:6"
                 app:layout_constraintStart_toStartOf="parent"
@@ -70,7 +73,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:backgroundTint="#878787"
-                android:text="trailer"
+                android:text="@string/details_button_text"
                 app:layout_constraintBottom_toBottomOf="@+id/android_image"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/android_image"
@@ -82,7 +85,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="16dp"
-                android:text="Overview"
+                android:text="@string/overview_text"
                 android:textSize="15sp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="@id/android_image"

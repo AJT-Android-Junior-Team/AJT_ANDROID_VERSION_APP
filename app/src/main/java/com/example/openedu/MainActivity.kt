@@ -5,12 +5,12 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.openedu.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity(), MainFragment.MainFragmentListener {
-    private lateinit var binding_main: ActivityMainBinding
+    private lateinit var bindingMain: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding_main = ActivityMainBinding.inflate(layoutInflater)
-        setContentView(binding_main.root)
+        bindingMain = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(bindingMain.root)
         supportFragmentManager
             .beginTransaction()
             .addToBackStack(null)

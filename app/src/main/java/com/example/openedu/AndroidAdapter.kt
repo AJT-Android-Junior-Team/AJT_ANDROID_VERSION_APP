@@ -1,20 +1,19 @@
 package com.example.openedu
 
-import android.content.Context
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ExpandableListView
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
 class AndroidAdapter(private val clickListener: (position : Int) -> Unit) : RecyclerView.Adapter<AndroidAdapter.ViewHolder>(){
-    private var android_lst = ArrayList<Android>()
+    private var androidLst = ArrayList<Android>()
 
-    override fun getItemCount() = android_lst.size
+    override fun getItemCount() = androidLst.size
 
-    private fun getItem(position: Int) : Android = android_lst[position]
+    private fun getItem(position: Int) : Android = androidLst[position]
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.item, parent, false), clickListener)
@@ -24,14 +23,15 @@ class AndroidAdapter(private val clickListener: (position : Int) -> Unit) : Recy
         holder.bind(getItem(position))
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     fun addAndroid(android: Android) {
-        android_lst.add(android)
-        notifyDataSetChanged()
+        androidLst.add(android)
+        notifyItemInserted(androidLst.size)
     }
 
     class ViewHolder(view: View, listener: (position: Int) -> Unit) : RecyclerView.ViewHolder(view) {
-        val name = view.findViewById<TextView>(R.id.android_name)
-        val image = view.findViewById<ImageView>(R.id.android_image)
+        private val itemName : TextView? = view.findViewById(R.id.android_name)
+        private val itemImage : ImageView? = view.findViewById(R.id.android_image)
 
         init {
             itemView.setOnClickListener {
@@ -43,8 +43,8 @@ class AndroidAdapter(private val clickListener: (position : Int) -> Unit) : Recy
         }
 
         fun bind(android: Android) {
-            name.text = android.title
-            image.setImageResource(android.imageAndroid)
+            itemName?.text = android.title
+            itemImage?.setImageResource(android.imageAndroid)
         }
     }
 }

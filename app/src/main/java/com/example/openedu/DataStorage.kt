@@ -27,7 +27,7 @@ object DataStorage {
                         "in Android's center, including the ability for the OS to operate on a variety of different screen sizes " +
                         "and resolutions — a factor that'd be critical in the years to come. It also added support for CDMA " +
                         "networks like Verizon, which would play a key role in Android's imminent explosion.",
-                "Septemper 15, 2009",
+                "September 15, 2009",
                 "https://www.youtube.com/watch?v=ElvK3nBsh6E"
             ),
 
@@ -93,7 +93,7 @@ object DataStorage {
                 "Jelly Bean",
                 R.drawable.jelly,
                 R.drawable.poster,
-                "Spread across three impactful Android versions, 2012 and 2013's Jelly Bean releases took ICS's fresh " +
+                "Spread across three impactful Android versions, 2012 and 2013's Jelly Bean releases took ICS fresh " +
                         "foundation and made meaningful strides in fine-tuning and building upon it. The releases added plenty " +
                         "of poise and polish into the operating system and went a long way in making Android more inviting " +
                         "for the average user.\n" +
