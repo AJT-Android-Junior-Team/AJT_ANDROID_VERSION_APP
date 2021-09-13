@@ -1,4 +1,4 @@
-package com.example.openedu
+package com.ajt.android_version_app
 
 object DataStorage {
     fun getVersionsList(): List<Android> {

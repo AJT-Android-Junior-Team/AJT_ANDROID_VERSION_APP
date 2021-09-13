@@ -1,8 +1,8 @@
-package com.example.openedu
+package com.ajt.android_version_app
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.example.openedu.databinding.ActivityMainBinding
+import com.ajt.android_version_app.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity(), MainFragment.MainFragmentListener {
     private lateinit var bindingMain: ActivityMainBinding

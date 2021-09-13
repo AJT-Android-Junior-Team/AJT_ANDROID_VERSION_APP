@@ -5,5 +5,5 @@ dependencyResolutionManagement {
         mavenCentral()
     }
 }
-rootProject.name = "OpenEdu"
+rootProject.name = "AJT_ANDROID_VERSION_APP"
 include ':app'

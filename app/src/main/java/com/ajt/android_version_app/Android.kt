@@ -1,4 +1,4 @@
-package com.example.openedu
+package com.ajt.android_version_app
 
 import android.os.Parcelable
 import androidx.annotation.DrawableRes

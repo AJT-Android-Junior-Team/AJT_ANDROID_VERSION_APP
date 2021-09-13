@@ -1,4 +1,4 @@
-package com.example.openedu
+package com.ajt.android_version_app
 
 import android.annotation.SuppressLint
 import android.view.LayoutInflater

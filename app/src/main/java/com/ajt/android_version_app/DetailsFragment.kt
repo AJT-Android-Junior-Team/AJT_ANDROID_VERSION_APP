@@ -1,4 +1,4 @@
-package com.example.openedu
+package com.ajt.android_version_app
 
 import android.content.Intent
 import android.net.Uri
@@ -7,7 +7,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.example.openedu.databinding.FragmentDetailsBinding
+import com.ajt.android_version_app.databinding.FragmentDetailsBinding
 
 class DetailsFragment : Fragment() {
     private var android: Android? = null
