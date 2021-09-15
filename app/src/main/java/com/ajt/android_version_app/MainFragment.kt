@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.ajt.android_version_app.databinding.FragmentMainBinding
 
 class MainFragment : Fragment() {
-    private lateinit var binding: FragmentMainBinding
+    private var binding: FragmentMainBinding? = null
     private var listener: MainFragmentListener? = null
     private val versions = DataStorage.getVersionsList()
     private val adapter = AndroidAdapter { position ->
@@ -27,28 +27,28 @@ class MainFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View {
+    ): View? {
         binding = FragmentMainBinding.inflate(inflater)
         initPage(DataStorage.getVersionsList())
-        return binding.root
+        return binding?.root
     }
 
-    private fun initPage(versionsList: List<Android>) {
-        binding.apply {
-            mainRv.layoutManager = LinearLayoutManager(context)
-            mainRv.adapter = adapter
+    private fun initPage(versionsList: List<AndroidVersions>) {
+        binding?.apply {
+            recyclerViewMain.layoutManager = LinearLayoutManager(context)
+            recyclerViewMain.adapter = adapter
             addAndroid(versionsList)
         }
     }
 
-    private fun addAndroid(androidList: List<Android>) {
-        androidList.forEach {
+    private fun addAndroid(androidVersionsList: List<AndroidVersions>) {
+        androidVersionsList.forEach {
             adapter.addAndroid(it)
         }
     }
 
     interface MainFragmentListener {
-        fun onOpenInfoPage(android: Android)
+        fun onOpenInfoPage(androidVersions: AndroidVersions)
     }
 
     companion object {

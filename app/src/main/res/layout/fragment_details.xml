@@ -21,7 +21,7 @@
 
             <ImageView
                 android:id="@+id/background_image"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="250dp"
                 android:contentDescription="@string/cd_background_image"
                 android:scaleType="centerCrop"
@@ -72,7 +72,7 @@
                 android:id="@+id/button_video"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:backgroundTint="#878787"
+                android:backgroundTint="@color/gray"
                 android:text="@string/details_button_text"
                 app:layout_constraintBottom_toBottomOf="@+id/android_image"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -80,7 +80,7 @@
                 app:layout_constraintTop_toBottomOf="@id/release_date" />
 
             <TextView
-                android:id="@+id/overview"
+                android:id="@+id/overview_label"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
@@ -92,13 +92,13 @@
                 app:layout_constraintTop_toBottomOf="@id/android_image" />
 
             <TextView
-                android:id="@+id/overviewText"
+                android:id="@+id/overview_text"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_margin="16dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/overview"
+                app:layout_constraintTop_toBottomOf="@id/overview_label"
                 tools:text="@tools:sample/lorem/random" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>

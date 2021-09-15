@@ -8,25 +8,22 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
-class AndroidAdapter(private val clickListener: (position : Int) -> Unit) : RecyclerView.Adapter<AndroidAdapter.ViewHolder>(){
-    private var androidLst = ArrayList<Android>()
+class AndroidAdapter(private val clickListener: (position : Int) -> Unit) : RecyclerView.Adapter<AndroidAdapter.ViewHolder>() {
+    private var androidVersionsList = ArrayList<AndroidVersions>()
 
-    override fun getItemCount() = androidLst.size
+    override fun getItemCount() = androidVersionsList.size
 
-    private fun getItem(position: Int) : Android = androidLst[position]
+    private fun getItem(position: Int) : AndroidVersions = androidVersionsList[position]
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        return ViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.item, parent, false), clickListener)
-    }
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
+        ViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.item, parent, false), clickListener)
 
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bind(getItem(position))
-    }
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) = holder.bind(getItem(position))
 
     @SuppressLint("NotifyDataSetChanged")
-    fun addAndroid(android: Android) {
-        androidLst.add(android)
-        notifyItemInserted(androidLst.size)
+    fun addAndroid(androidVersions: AndroidVersions) {
+        androidVersionsList.add(androidVersions)
+        notifyItemInserted(androidVersionsList.size)
     }
 
     class ViewHolder(view: View, listener: (position: Int) -> Unit) : RecyclerView.ViewHolder(view) {
@@ -42,9 +39,9 @@ class AndroidAdapter(private val clickListener: (position : Int) -> Unit) : Recy
             }
         }
 
-        fun bind(android: Android) {
-            itemName?.text = android.title
-            itemImage?.setImageResource(android.imageAndroid)
+        fun bind(androidVersions: AndroidVersions) {
+            itemName?.text = androidVersions.versionName
+            itemImage?.setImageResource(androidVersions.imageAndroid)
         }
     }
 }
