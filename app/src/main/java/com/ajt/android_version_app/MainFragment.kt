@@ -8,7 +8,6 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.ajt.android_version_app.databinding.FragmentMainBinding
-import java.lang.RuntimeException
 
 class MainFragment : Fragment() {
     private var _binding: FragmentMainBinding? = null

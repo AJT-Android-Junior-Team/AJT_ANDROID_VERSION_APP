@@ -31,29 +31,33 @@
                 app:layout_constraintTop_toTopOf="parent"
                 tools:srcCompat="@drawable/poster" />
 
-            <ImageView
+            <com.google.android.material.imageview.ShapeableImageView
                 android:id="@+id/android_image"
                 android:layout_width="128dp"
                 android:layout_height="0dp"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="24dp"
                 android:contentDescription="@string/cd_android_logo"
+                android:padding="3dp"
                 android:scaleType="centerCrop"
-                app:layout_constraintDimensionRatio="h,4:6"
+                app:layout_constraintDimensionRatio="h,4:4"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/background_image"
+                app:shapeAppearanceOverlay="@style/ImageViewCircle"
+                app:strokeColor="@color/purple_700"
+                app:strokeWidth="5dp"
                 tools:srcCompat="@tools:sample/avatars" />
 
             <TextView
                 android:id="@+id/android_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
+                android:layout_marginEnd="20dp"
                 android:textColor="@color/purple_700"
                 android:textSize="20sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toTopOf="@+id/release_date"
-                app:layout_constraintStart_toEndOf="@id/android_image"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/android_image"
                 tools:text="@tools:sample/full_names" />
 
@@ -64,7 +68,7 @@
                 android:textSize="15sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toTopOf="@+id/button_video"
-                app:layout_constraintStart_toStartOf="@+id/android_name"
+                app:layout_constraintEnd_toEndOf="@+id/android_name"
                 app:layout_constraintTop_toBottomOf="@+id/android_name"
                 tools:text="Released" />
 
@@ -76,28 +80,29 @@
                 android:text="@string/details_button_text"
                 app:icon="@drawable/ic_play"
                 app:layout_constraintBottom_toBottomOf="@+id/android_image"
-                app:layout_constraintStart_toStartOf="@+id/release_date"
+                app:layout_constraintEnd_toEndOf="@+id/release_date"
                 app:layout_constraintTop_toBottomOf="@+id/release_date" />
 
             <TextView
                 android:id="@+id/overview_label"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
+                android:layout_marginStart="20dp"
                 android:layout_marginTop="16dp"
                 android:text="@string/overview_text"
                 android:textSize="15sp"
                 android:textStyle="bold"
-                app:layout_constraintStart_toStartOf="@id/android_image"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/android_image" />
 
             <TextView
                 android:id="@+id/overview_text"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_margin="16dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginTop="16dp"
+                android:paddingBottom="20dp"
+                app:layout_constraintEnd_toEndOf="@+id/button_video"
+                app:layout_constraintStart_toStartOf="@+id/overview_label"
                 app:layout_constraintTop_toBottomOf="@id/overview_label"
                 tools:text="@tools:sample/lorem/random" />
 
