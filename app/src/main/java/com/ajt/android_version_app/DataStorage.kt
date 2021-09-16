@@ -1,16 +1,16 @@
 package com.ajt.android_version_app
 
 object DataStorage {
-    fun getVersionsList(): List<Android> {
+    fun getVersionsList(): List<AndroidVersion> {
         return listOf(
-            Android(
+            AndroidVersion(
                 "Cupcake",
                 R.drawable.cupcake,
                 R.drawable.poster,
                 "With early 2009's Android 1.5 Cupcake release, the tradition of Android version names was born. " +
                         "Cupcake introduced numerous refinements to the Android interface, including the first on-screen " +
                         "keyboard — something that'd be necessary as phones moved away from the once-ubiquitous physical" +
-                        " keyboard model.\n" +
+                        "keyboard model.\n" +
                         "\n" +
                         "Cupcake also brought about the framework for third-party app widgets, which would quickly turn " +
                         "into one of Android's most distinguishing elements, and it provided the platform's first-ever " +
@@ -19,7 +19,7 @@ object DataStorage {
                 "https://www.youtube.com/watch?v=YJGwmzXzMfw"
             ),
 
-            Android(
+            AndroidVersion(
                 "Donut",
                 R.drawable.donut,
                 R.drawable.poster,
@@ -31,7 +31,7 @@ object DataStorage {
                 "https://www.youtube.com/watch?v=ElvK3nBsh6E"
             ),
 
-            Android(
+            AndroidVersion(
                 "Eclair",
                 R.drawable.eclair,
                 R.drawable.poster,
@@ -43,7 +43,7 @@ object DataStorage {
                 "https://www.youtube.com/watch?v=IvU6g2V_oio"
             ),
 
-            Android(
+            AndroidVersion(
                 "Froyo",
                 R.drawable.froyo,
                 R.drawable.poster,
@@ -62,7 +62,7 @@ object DataStorage {
                 "https://www.youtube.com/watch?v=yAZYSVr2Bhc"
             ),
 
-            Android(
+            AndroidVersion(
                 "Gingerbread",
                 R.drawable.gingerbread,
                 R.drawable.poster,
@@ -74,7 +74,7 @@ object DataStorage {
                 "https://www.youtube.com/watch?v=Jx3pdWBlZ34"
             ),
 
-            Android(
+            AndroidVersion(
                 "Honeycomb",
                 R.drawable.honeycomb,
                 R.drawable.poster,
@@ -89,7 +89,7 @@ object DataStorage {
                 "https://www.youtube.com/watch?v=hPUGNCIozp0"
             ),
 
-            Android(
+            AndroidVersion(
                 "Jelly Bean",
                 R.drawable.jelly,
                 R.drawable.poster,
@@ -112,7 +112,7 @@ object DataStorage {
                 "https://www.youtube.com/watch?v=poSFV9_abcw"
             ),
 
-            Android(
+            AndroidVersion(
                 "Kitkat",
                 R.drawable.kitkat,
                 R.drawable.poster,
@@ -132,7 +132,7 @@ object DataStorage {
                 "https://www.youtube.com/watch?v=sONcojECWXs"
             ),
 
-            Android(
+            AndroidVersion(
                 "Lollipop",
                 R.drawable.lollipop,
                 R.drawable.poster,
@@ -147,7 +147,7 @@ object DataStorage {
                 "https://www.youtube.com/watch?v=ZkGSR0Q492g"
             ),
 
-            Android(
+            AndroidVersion(
                 "Marshmallow",
                 R.drawable.marshmallow,
                 R.drawable.poster,
@@ -164,7 +164,7 @@ object DataStorage {
                 "https://www.youtube.com/watch?v=U9tw5ypqEN0&list=PLWz5rJ2EKKc9VBBpeGykiTh8HQ1fSBnk-"
             ),
 
-            Android(
+            AndroidVersion(
                 "Nougat",
                 R.drawable.nougat,
                 R.drawable.poster,
@@ -175,7 +175,7 @@ object DataStorage {
                 "https://www.youtube.com/watch?v=6JKve8YLwu4"
             ),
 
-            Android(
+            AndroidVersion(
                 "Oreo",
                 R.drawable.oreo,
                 R.drawable.poster,
@@ -185,7 +185,7 @@ object DataStorage {
                 "https://www.youtube.com/watch?v=7kD0ZYzJbYo"
             ),
 
-            Android(
+            AndroidVersion(
                 "Pie",
                 R.drawable.pie,
                 R.drawable.poster,
@@ -197,7 +197,7 @@ object DataStorage {
                 "https://www.youtube.com/watch?v=ZXyvgHJ6c4w"
             ),
 
-            Android(
+            AndroidVersion(
                 "Android 10",
                 R.drawable.android_ten,
                 R.drawable.poster,
@@ -211,7 +211,7 @@ object DataStorage {
                 "https://www.youtube.com/watch?v=yOMLgWQ3ckQ"
             ),
 
-            Android(
+            AndroidVersion(
                 "Android 11",
                 R.drawable.android_el,
                 R.drawable.poster,

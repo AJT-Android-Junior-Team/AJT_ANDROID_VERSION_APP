@@ -8,9 +8,12 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.ajt.android_version_app.databinding.FragmentMainBinding
+import java.lang.RuntimeException
 
 class MainFragment : Fragment() {
-    private lateinit var binding: FragmentMainBinding
+    private var _binding: FragmentMainBinding? = null
+    private val binding: FragmentMainBinding
+        get() = _binding ?: throw RuntimeException("FragmentMainBinding failed")
     private var listener: MainFragmentListener? = null
     private val versions = DataStorage.getVersionsList()
     private val adapter = AndroidAdapter { position ->
@@ -28,27 +31,33 @@ class MainFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentMainBinding.inflate(inflater)
-        initPage(DataStorage.getVersionsList())
+        _binding = FragmentMainBinding.inflate(inflater)
+        if (savedInstanceState == null)
+            initPage(DataStorage.getVersionsList())
         return binding.root
     }
 
-    private fun initPage(versionsList: List<Android>) {
+    private fun initPage(versionsList: List<AndroidVersion>) {
         binding.apply {
-            mainRv.layoutManager = LinearLayoutManager(context)
-            mainRv.adapter = adapter
+            recyclerViewMain.layoutManager = LinearLayoutManager(context)
+            recyclerViewMain.adapter = adapter
             addAndroid(versionsList)
         }
     }
 
-    private fun addAndroid(androidList: List<Android>) {
-        androidList.forEach {
+    private fun addAndroid(androidVersionsList: List<AndroidVersion>) {
+        androidVersionsList.forEach {
             adapter.addAndroid(it)
         }
     }
 
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
+
     interface MainFragmentListener {
-        fun onOpenInfoPage(android: Android)
+        fun onOpenInfoPage(androidVersion: AndroidVersion)
     }
 
     companion object {

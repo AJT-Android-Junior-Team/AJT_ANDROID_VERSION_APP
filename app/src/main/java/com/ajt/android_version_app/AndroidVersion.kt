@@ -5,11 +5,11 @@ import androidx.annotation.DrawableRes
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
-data class Android(
-    val title: String,
+data class AndroidVersion(
+    val versionName: String,
     @DrawableRes val imageAndroid: Int,
     @DrawableRes val posterAndroid: Int,
-    val overview_text : String,
-    val release_date : String,
-    val trailer_url : String
+    val overviewText: String,
+    val releaseDate: String,
+    val trailerUrl: String,
 ) : Parcelable

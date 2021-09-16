@@ -21,7 +21,7 @@
 
             <ImageView
                 android:id="@+id/background_image"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="250dp"
                 android:contentDescription="@string/cd_background_image"
                 android:scaleType="centerCrop"
@@ -49,21 +49,21 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                android:layout_marginTop="8dp"
                 android:textColor="@color/purple_700"
                 android:textSize="20sp"
                 android:textStyle="bold"
+                app:layout_constraintBottom_toTopOf="@+id/release_date"
                 app:layout_constraintStart_toEndOf="@id/android_image"
-                app:layout_constraintTop_toTopOf="@id/android_image"
+                app:layout_constraintTop_toTopOf="@+id/android_image"
                 tools:text="@tools:sample/full_names" />
 
             <TextView
                 android:id="@+id/release_date"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
                 android:textSize="15sp"
                 android:textStyle="bold"
+                app:layout_constraintBottom_toTopOf="@+id/button_video"
                 app:layout_constraintStart_toStartOf="@+id/android_name"
                 app:layout_constraintTop_toBottomOf="@+id/android_name"
                 tools:text="Released" />
@@ -72,15 +72,15 @@
                 android:id="@+id/button_video"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:backgroundTint="#878787"
+                android:backgroundTint="#c4302b"
                 android:text="@string/details_button_text"
+                app:icon="@drawable/ic_play"
                 app:layout_constraintBottom_toBottomOf="@+id/android_image"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/android_image"
-                app:layout_constraintTop_toBottomOf="@id/release_date" />
+                app:layout_constraintStart_toStartOf="@+id/release_date"
+                app:layout_constraintTop_toBottomOf="@+id/release_date" />
 
             <TextView
-                android:id="@+id/overview"
+                android:id="@+id/overview_label"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
@@ -92,13 +92,13 @@
                 app:layout_constraintTop_toBottomOf="@id/android_image" />
 
             <TextView
-                android:id="@+id/overviewText"
+                android:id="@+id/overview_text"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_margin="16dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/overview"
+                app:layout_constraintTop_toBottomOf="@id/overview_label"
                 tools:text="@tools:sample/lorem/random" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>

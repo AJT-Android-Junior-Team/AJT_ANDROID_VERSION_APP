@@ -10,35 +10,39 @@ import android.view.ViewGroup
 import com.ajt.android_version_app.databinding.FragmentDetailsBinding
 
 class DetailsFragment : Fragment() {
-    private var android: Android? = null
-    private lateinit var detailsBinding : FragmentDetailsBinding
+    private var androidVersion: AndroidVersion? = null
+    private var _binding: FragmentDetailsBinding? = null
+    private val binding: FragmentDetailsBinding
+        get() = _binding ?: throw RuntimeException("FragmentDetailsBinding failed")
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        arguments?.let {
-            android = it.getParcelable(ARGS_VERSION)
+        arguments?.let { bundle ->
+            androidVersion = bundle.getParcelable(ARGS_VERSION)
         }
     }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View {
-        detailsBinding = FragmentDetailsBinding.inflate(inflater)
-        initPage()
-        return detailsBinding.root
+    ): View? {
+        if (savedInstanceState == null) {
+            _binding = FragmentDetailsBinding.inflate(inflater)
+            initPage()
+        }
+        return _binding?.root
     }
 
     private fun initPage() {
-        if (android != null) {
-            detailsBinding.apply {
-                backgroundImage.setImageResource(android!!.posterAndroid)
-                androidImage.setImageResource(android!!.imageAndroid)
-                androidName.text = android!!.title
-                releaseDate.text = android!!.release_date
-                overviewText.text = android!!.overview_text
+        androidVersion?.let { androidVersions ->
+            binding.apply {
+                backgroundImage.setImageResource(androidVersions.posterAndroid)
+                androidImage.setImageResource(androidVersions.imageAndroid)
+                androidName.text = androidVersions.versionName
+                releaseDate.text = androidVersions.releaseDate
+                overviewText.text = androidVersions.overviewText
                 buttonVideo.setOnClickListener {
-                    openAndroidTrailer(android!!.trailer_url)
+                    openAndroidTrailer(androidVersions.trailerUrl)
                 }
             }
         }
@@ -49,14 +53,19 @@ class DetailsFragment : Fragment() {
         startActivity(intentUrl)
     }
 
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
+
     companion object {
         private const val ARGS_VERSION = "ARGS_VERSION"
 
         @JvmStatic
-        fun newInstance(android: Android) =
+        fun newInstance(androidVersion: AndroidVersion) =
             DetailsFragment().apply {
                 arguments = Bundle().apply {
-                    putParcelable(ARGS_VERSION, android)
+                    putParcelable(ARGS_VERSION, androidVersion)
                 }
             }
     }

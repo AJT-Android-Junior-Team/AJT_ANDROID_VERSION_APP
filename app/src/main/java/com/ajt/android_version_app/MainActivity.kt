@@ -5,24 +5,29 @@ import androidx.appcompat.app.AppCompatActivity
 import com.ajt.android_version_app.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity(), MainFragment.MainFragmentListener {
-    private lateinit var bindingMain: ActivityMainBinding
+    private var bindingMain: ActivityMainBinding? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         bindingMain = ActivityMainBinding.inflate(layoutInflater)
-        setContentView(bindingMain.root)
+        setContentView(bindingMain?.root)
         supportFragmentManager
             .beginTransaction()
             .addToBackStack(null)
-            .add(R.id.main_fl, MainFragment.newInstance())
+            .add(R.id.frameLayoutMain, MainFragment.newInstance())
             .commit()
     }
 
-    override fun onOpenInfoPage(android: Android) {
+    override fun onDestroy() {
+        super.onDestroy()
+        bindingMain = null
+    }
+
+    override fun onOpenInfoPage(androidVersion: AndroidVersion) {
         supportFragmentManager
             .beginTransaction()
             .addToBackStack(null)
-            .add(R.id.main_fl, DetailsFragment.newInstance(android))
+            .add(R.id.frameLayoutMain, DetailsFragment.newInstance(androidVersion))
             .commit()
     }
 
