@@ -1,9 +1,9 @@
 package com.ajt.android_version_app
 
 object DataStorage {
-    fun getVersionsList(): List<AndroidVersions> {
+    fun getVersionsList(): List<AndroidVersion> {
         return listOf(
-            AndroidVersions(
+            AndroidVersion(
                 "Cupcake",
                 R.drawable.cupcake,
                 R.drawable.poster,
@@ -19,7 +19,7 @@ object DataStorage {
                 "https://www.youtube.com/watch?v=YJGwmzXzMfw"
             ),
 
-            AndroidVersions(
+            AndroidVersion(
                 "Donut",
                 R.drawable.donut,
                 R.drawable.poster,
@@ -31,7 +31,7 @@ object DataStorage {
                 "https://www.youtube.com/watch?v=ElvK3nBsh6E"
             ),
 
-            AndroidVersions(
+            AndroidVersion(
                 "Eclair",
                 R.drawable.eclair,
                 R.drawable.poster,
@@ -43,7 +43,7 @@ object DataStorage {
                 "https://www.youtube.com/watch?v=IvU6g2V_oio"
             ),
 
-            AndroidVersions(
+            AndroidVersion(
                 "Froyo",
                 R.drawable.froyo,
                 R.drawable.poster,
@@ -62,7 +62,7 @@ object DataStorage {
                 "https://www.youtube.com/watch?v=yAZYSVr2Bhc"
             ),
 
-            AndroidVersions(
+            AndroidVersion(
                 "Gingerbread",
                 R.drawable.gingerbread,
                 R.drawable.poster,
@@ -74,7 +74,7 @@ object DataStorage {
                 "https://www.youtube.com/watch?v=Jx3pdWBlZ34"
             ),
 
-            AndroidVersions(
+            AndroidVersion(
                 "Honeycomb",
                 R.drawable.honeycomb,
                 R.drawable.poster,
@@ -89,7 +89,7 @@ object DataStorage {
                 "https://www.youtube.com/watch?v=hPUGNCIozp0"
             ),
 
-            AndroidVersions(
+            AndroidVersion(
                 "Jelly Bean",
                 R.drawable.jelly,
                 R.drawable.poster,
@@ -112,7 +112,7 @@ object DataStorage {
                 "https://www.youtube.com/watch?v=poSFV9_abcw"
             ),
 
-            AndroidVersions(
+            AndroidVersion(
                 "Kitkat",
                 R.drawable.kitkat,
                 R.drawable.poster,
@@ -132,7 +132,7 @@ object DataStorage {
                 "https://www.youtube.com/watch?v=sONcojECWXs"
             ),
 
-            AndroidVersions(
+            AndroidVersion(
                 "Lollipop",
                 R.drawable.lollipop,
                 R.drawable.poster,
@@ -147,7 +147,7 @@ object DataStorage {
                 "https://www.youtube.com/watch?v=ZkGSR0Q492g"
             ),
 
-            AndroidVersions(
+            AndroidVersion(
                 "Marshmallow",
                 R.drawable.marshmallow,
                 R.drawable.poster,
@@ -164,7 +164,7 @@ object DataStorage {
                 "https://www.youtube.com/watch?v=U9tw5ypqEN0&list=PLWz5rJ2EKKc9VBBpeGykiTh8HQ1fSBnk-"
             ),
 
-            AndroidVersions(
+            AndroidVersion(
                 "Nougat",
                 R.drawable.nougat,
                 R.drawable.poster,
@@ -175,7 +175,7 @@ object DataStorage {
                 "https://www.youtube.com/watch?v=6JKve8YLwu4"
             ),
 
-            AndroidVersions(
+            AndroidVersion(
                 "Oreo",
                 R.drawable.oreo,
                 R.drawable.poster,
@@ -185,7 +185,7 @@ object DataStorage {
                 "https://www.youtube.com/watch?v=7kD0ZYzJbYo"
             ),
 
-            AndroidVersions(
+            AndroidVersion(
                 "Pie",
                 R.drawable.pie,
                 R.drawable.poster,
@@ -197,7 +197,7 @@ object DataStorage {
                 "https://www.youtube.com/watch?v=ZXyvgHJ6c4w"
             ),
 
-            AndroidVersions(
+            AndroidVersion(
                 "Android 10",
                 R.drawable.android_ten,
                 R.drawable.poster,
@@ -211,7 +211,7 @@ object DataStorage {
                 "https://www.youtube.com/watch?v=yOMLgWQ3ckQ"
             ),
 
-            AndroidVersions(
+            AndroidVersion(
                 "Android 11",
                 R.drawable.android_el,
                 R.drawable.poster,

@@ -10,13 +10,15 @@ import android.view.ViewGroup
 import com.ajt.android_version_app.databinding.FragmentDetailsBinding
 
 class DetailsFragment : Fragment() {
-    private var androidVersions: AndroidVersions? = null
-    private var binding: FragmentDetailsBinding? = null
+    private var androidVersion: AndroidVersion? = null
+    private var _binding: FragmentDetailsBinding? = null
+    private val binding: FragmentDetailsBinding
+        get() = _binding ?: throw RuntimeException("FragmentDetailsBinding failed")
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let { bundle ->
-            androidVersions = bundle.getParcelable(ARGS_VERSION)
+            androidVersion = bundle.getParcelable(ARGS_VERSION)
         }
     }
 
@@ -24,14 +26,16 @@ class DetailsFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentDetailsBinding.inflate(inflater)
-        initPage()
-        return binding?.root
+        if (savedInstanceState == null) {
+            _binding = FragmentDetailsBinding.inflate(inflater)
+            initPage()
+        }
+        return _binding?.root
     }
 
     private fun initPage() {
-        androidVersions?.let { androidVersions ->
-            binding?.apply {
+        androidVersion?.let { androidVersions ->
+            binding.apply {
                 backgroundImage.setImageResource(androidVersions.posterAndroid)
                 androidImage.setImageResource(androidVersions.imageAndroid)
                 androidName.text = androidVersions.versionName
@@ -49,14 +53,19 @@ class DetailsFragment : Fragment() {
         startActivity(intentUrl)
     }
 
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
+
     companion object {
         private const val ARGS_VERSION = "ARGS_VERSION"
 
         @JvmStatic
-        fun newInstance(androidVersions: AndroidVersions) =
+        fun newInstance(androidVersion: AndroidVersion) =
             DetailsFragment().apply {
                 arguments = Bundle().apply {
-                    putParcelable(ARGS_VERSION, androidVersions)
+                    putParcelable(ARGS_VERSION, androidVersion)
                 }
             }
     }

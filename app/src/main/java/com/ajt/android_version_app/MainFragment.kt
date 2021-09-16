@@ -8,9 +8,12 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.ajt.android_version_app.databinding.FragmentMainBinding
+import java.lang.RuntimeException
 
 class MainFragment : Fragment() {
-    private var binding: FragmentMainBinding? = null
+    private var _binding: FragmentMainBinding? = null
+    private val binding: FragmentMainBinding
+        get() = _binding ?: throw RuntimeException("FragmentMainBinding failed")
     private var listener: MainFragmentListener? = null
     private val versions = DataStorage.getVersionsList()
     private val adapter = AndroidAdapter { position ->
@@ -27,28 +30,34 @@ class MainFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        binding = FragmentMainBinding.inflate(inflater)
-        initPage(DataStorage.getVersionsList())
-        return binding?.root
+    ): View {
+        _binding = FragmentMainBinding.inflate(inflater)
+        if (savedInstanceState == null)
+            initPage(DataStorage.getVersionsList())
+        return binding.root
     }
 
-    private fun initPage(versionsList: List<AndroidVersions>) {
-        binding?.apply {
+    private fun initPage(versionsList: List<AndroidVersion>) {
+        binding.apply {
             recyclerViewMain.layoutManager = LinearLayoutManager(context)
             recyclerViewMain.adapter = adapter
             addAndroid(versionsList)
         }
     }
 
-    private fun addAndroid(androidVersionsList: List<AndroidVersions>) {
+    private fun addAndroid(androidVersionsList: List<AndroidVersion>) {
         androidVersionsList.forEach {
             adapter.addAndroid(it)
         }
     }
 
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
+
     interface MainFragmentListener {
-        fun onOpenInfoPage(androidVersions: AndroidVersions)
+        fun onOpenInfoPage(androidVersion: AndroidVersion)
     }
 
     companion object {

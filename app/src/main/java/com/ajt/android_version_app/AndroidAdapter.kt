@@ -9,11 +9,11 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
 class AndroidAdapter(private val clickListener: (position : Int) -> Unit) : RecyclerView.Adapter<AndroidAdapter.ViewHolder>() {
-    private var androidVersionsList = ArrayList<AndroidVersions>()
+    private var androidVersionsList = ArrayList<AndroidVersion>()
 
     override fun getItemCount() = androidVersionsList.size
 
-    private fun getItem(position: Int) : AndroidVersions = androidVersionsList[position]
+    private fun getItem(position: Int) : AndroidVersion = androidVersionsList[position]
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
         ViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.item, parent, false), clickListener)
@@ -21,8 +21,8 @@ class AndroidAdapter(private val clickListener: (position : Int) -> Unit) : Recy
     override fun onBindViewHolder(holder: ViewHolder, position: Int) = holder.bind(getItem(position))
 
     @SuppressLint("NotifyDataSetChanged")
-    fun addAndroid(androidVersions: AndroidVersions) {
-        androidVersionsList.add(androidVersions)
+    fun addAndroid(androidVersion: AndroidVersion) {
+        androidVersionsList.add(androidVersion)
         notifyItemInserted(androidVersionsList.size)
     }
 
@@ -39,9 +39,9 @@ class AndroidAdapter(private val clickListener: (position : Int) -> Unit) : Recy
             }
         }
 
-        fun bind(androidVersions: AndroidVersions) {
-            itemName?.text = androidVersions.versionName
-            itemImage?.setImageResource(androidVersions.imageAndroid)
+        fun bind(androidVersion: AndroidVersion) {
+            itemName?.text = androidVersion.versionName
+            itemImage?.setImageResource(androidVersion.imageAndroid)
         }
     }
 }

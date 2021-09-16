@@ -18,11 +18,16 @@ class MainActivity : AppCompatActivity(), MainFragment.MainFragmentListener {
             .commit()
     }
 
-    override fun onOpenInfoPage(androidVersions: AndroidVersions) {
+    override fun onDestroy() {
+        super.onDestroy()
+        bindingMain = null
+    }
+
+    override fun onOpenInfoPage(androidVersion: AndroidVersion) {
         supportFragmentManager
             .beginTransaction()
             .addToBackStack(null)
-            .add(R.id.frameLayoutMain, DetailsFragment.newInstance(androidVersions))
+            .add(R.id.frameLayoutMain, DetailsFragment.newInstance(androidVersion))
             .commit()
     }
 

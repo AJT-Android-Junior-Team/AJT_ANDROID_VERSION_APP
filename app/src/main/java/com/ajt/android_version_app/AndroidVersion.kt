@@ -5,7 +5,7 @@ import androidx.annotation.DrawableRes
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
-data class AndroidVersions(
+data class AndroidVersion(
     val versionName: String,
     @DrawableRes val imageAndroid: Int,
     @DrawableRes val posterAndroid: Int,
