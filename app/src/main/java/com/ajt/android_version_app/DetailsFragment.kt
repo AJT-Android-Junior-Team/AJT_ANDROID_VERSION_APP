@@ -26,8 +26,8 @@ class DetailsFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        _binding = FragmentDetailsBinding.inflate(inflater)
         if (savedInstanceState == null) {
-            _binding = FragmentDetailsBinding.inflate(inflater)
             initPage()
         }
         return _binding?.root
