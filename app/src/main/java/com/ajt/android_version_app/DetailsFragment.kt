@@ -12,8 +12,7 @@ import com.ajt.android_version_app.databinding.FragmentDetailsBinding
 class DetailsFragment : Fragment() {
     private var androidVersion: AndroidVersion? = null
     private var _binding: FragmentDetailsBinding? = null
-    private val binding: FragmentDetailsBinding
-        get() = _binding ?: throw RuntimeException("FragmentDetailsBinding failed")
+    private val binding get() = _binding!!
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,10 +26,13 @@ class DetailsFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentDetailsBinding.inflate(inflater)
-        if (savedInstanceState == null) {
-            initPage()
-        }
+        initPage()
         return _binding?.root
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 
     private fun initPage() {
@@ -51,11 +53,6 @@ class DetailsFragment : Fragment() {
     private fun openAndroidTrailer(trailerUrl: String) {
         val intentUrl = Intent(Intent.ACTION_VIEW, Uri.parse(trailerUrl))
         startActivity(intentUrl)
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
     }
 
     companion object {
