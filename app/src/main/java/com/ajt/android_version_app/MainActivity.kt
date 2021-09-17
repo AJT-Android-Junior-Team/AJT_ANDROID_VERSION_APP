@@ -9,7 +9,6 @@ import com.ajt.android_version_app.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity(), MainFragment.MainFragmentListener {
     private var bindingMain: ActivityMainBinding? = null
-    private val fragment = MainFragment.newInstance()
 
     companion object {
         private const val EMPTY_FRAGMENT = -1
@@ -41,7 +40,7 @@ class MainActivity : AppCompatActivity(), MainFragment.MainFragmentListener {
         fragmentStatus = LIST_FRAGMENT
         supportFragmentManager
             .beginTransaction()
-            .replace(R.id.frameLayoutMain, fragment)
+            .replace(R.id.frameLayoutMain, MainFragment.newInstance())
             .commit()
     }
 
