@@ -5,4 +5,7 @@
     <string name="cd_background_image">Android poster</string>
     <string name="details_button_text">trailer</string>
     <string name="overview_text">Overview</string>
+    <string name="exit_message">Complete the application ?</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
 </resources>

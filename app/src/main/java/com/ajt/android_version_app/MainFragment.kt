@@ -11,8 +11,7 @@ import com.ajt.android_version_app.databinding.FragmentMainBinding
 
 class MainFragment : Fragment() {
     private var _binding: FragmentMainBinding? = null
-    private val binding: FragmentMainBinding
-        get() = _binding ?: throw RuntimeException("FragmentMainBinding failed")
+    private val binding get() = _binding!!
     private var listener: MainFragmentListener? = null
     private val versions = DataStorage.getVersionsList()
     private val adapter = AndroidAdapter { position ->
@@ -31,9 +30,13 @@ class MainFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentMainBinding.inflate(inflater)
-        if (savedInstanceState == null)
-            initPage(DataStorage.getVersionsList())
+        initPage(DataStorage.getVersionsList())
         return binding.root
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 
     private fun initPage(versionsList: List<AndroidVersion>) {
@@ -48,11 +51,6 @@ class MainFragment : Fragment() {
         androidVersionsList.forEach {
             adapter.addAndroid(it)
         }
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
     }
 
     interface MainFragmentListener {
