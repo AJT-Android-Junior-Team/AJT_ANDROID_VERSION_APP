@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.OpenEdu">
         <activity
-            android:name="com.ajt.android_version_app.MainActivity"
+            android:name="com.ajt.android_version_app.presentation.activities.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

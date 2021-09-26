@@ -1,4 +1,6 @@
-package com.ajt.android_version_app
+package com.ajt.android_version_app.presentation.models
+
+import com.ajt.android_version_app.R
 
 object DataStorage {
     fun getVersionsList(): List<AndroidVersion> {

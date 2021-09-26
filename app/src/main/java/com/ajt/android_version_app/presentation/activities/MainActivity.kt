@@ -1,14 +1,18 @@
-package com.ajt.android_version_app
+package com.ajt.android_version_app.presentation.activities
 
 import android.content.DialogInterface
 import android.os.Bundle
 import android.view.MenuItem
+import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
-import com.ajt.android_version_app.databinding.ActivityMainBinding
+import com.ajt.android_version_app.R
+import com.ajt.android_version_app.presentation.fragments.DetailsFragment
+import com.ajt.android_version_app.presentation.fragments.MainFragment
+import com.ajt.android_version_app.presentation.models.MainViewModel
 
-class MainActivity : AppCompatActivity(), MainFragment.MainFragmentListener {
-    private var bindingMain: ActivityMainBinding? = null
+class MainActivity : AppCompatActivity() {
+    private val mainViewModel: MainViewModel by viewModels()
 
     companion object {
         private const val EMPTY_FRAGMENT = -1
@@ -21,19 +25,19 @@ class MainActivity : AppCompatActivity(), MainFragment.MainFragmentListener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        bindingMain = ActivityMainBinding.inflate(layoutInflater)
-        setContentView(bindingMain?.root)
+        setContentView(R.layout.activity_main)
+
+        mainViewModel.liveData.observe(this) {
+            onOpenInfoPage()
+        }
+
         if (savedInstanceState == null)
             onOpenMainPage()
+
         when (homeButton) {
             true -> supportActionBar?.setDisplayHomeAsUpEnabled(true)
             false -> supportActionBar?.setDisplayHomeAsUpEnabled(false)
         }
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        bindingMain = null
     }
 
     private fun onOpenMainPage() {
@@ -44,11 +48,11 @@ class MainActivity : AppCompatActivity(), MainFragment.MainFragmentListener {
             .commit()
     }
 
-    override fun onOpenInfoPage(androidVersion: AndroidVersion) {
+    private fun onOpenInfoPage() {
         fragmentStatus = DETAILS_FRAGMENT
         supportFragmentManager
             .beginTransaction()
-            .replace(R.id.frameLayoutMain, DetailsFragment.newInstance(androidVersion))
+            .replace(R.id.frameLayoutMain, DetailsFragment.newInstance())
             .commit()
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         homeButton = true
@@ -84,11 +88,11 @@ class MainActivity : AppCompatActivity(), MainFragment.MainFragmentListener {
     }
 
     override fun onOptionsItemSelected(item: MenuItem) = when (item.itemId) {
-            android.R.id.home -> {
-                onBackPressed()
-                true
-            }
-            else -> false
+        android.R.id.home -> {
+            onBackPressed()
+            true
+        }
+        else -> false
     }
 
 }

@@ -1,4 +1,4 @@
-package com.ajt.android_version_app
+package com.ajt.android_version_app.presentation.adapters
 
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
@@ -7,8 +7,11 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.ajt.android_version_app.presentation.models.AndroidVersion
+import com.ajt.android_version_app.R
+import com.ajt.android_version_app.presentation.models.MainViewModel
 
-class AndroidAdapter(private val clickListener: (position : Int) -> Unit) : RecyclerView.Adapter<AndroidAdapter.ViewHolder>() {
+class AndroidAdapter(val viewModel: MainViewModel) : RecyclerView.Adapter<AndroidAdapter.ViewHolder>() {
     private var androidVersionsList = ArrayList<AndroidVersion>()
 
     override fun getItemCount() = androidVersionsList.size
@@ -16,9 +19,14 @@ class AndroidAdapter(private val clickListener: (position : Int) -> Unit) : Recy
     private fun getItem(position: Int) : AndroidVersion = androidVersionsList[position]
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
-        ViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.item, parent, false), clickListener)
+        ViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.item, parent, false))
 
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) = holder.bind(getItem(position))
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        holder.bind(getItem(position))
+        holder.itemView.setOnClickListener {
+            viewModel.liveData.value = getItem(position)
+        }
+    }
 
     @SuppressLint("NotifyDataSetChanged")
     fun addAndroid(androidVersion: AndroidVersion) {
@@ -26,18 +34,9 @@ class AndroidAdapter(private val clickListener: (position : Int) -> Unit) : Recy
         notifyItemInserted(androidVersionsList.size)
     }
 
-    class ViewHolder(view: View, listener: (position: Int) -> Unit) : RecyclerView.ViewHolder(view) {
+    class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         private val itemName : TextView? = view.findViewById(R.id.android_name)
         private val itemImage : ImageView? = view.findViewById(R.id.android_image)
-
-        init {
-            itemView.setOnClickListener {
-                val position = adapterPosition
-                if (position != RecyclerView.NO_POSITION) {
-                    listener(position)
-                }
-            }
-        }
 
         fun bind(androidVersion: AndroidVersion) {
             itemName?.text = androidVersion.versionName

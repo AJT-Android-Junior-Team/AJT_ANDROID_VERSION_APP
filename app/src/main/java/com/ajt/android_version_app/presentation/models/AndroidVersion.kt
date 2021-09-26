@@ -1,4 +1,4 @@
-package com.ajt.android_version_app
+package com.ajt.android_version_app.presentation.models
 
 import android.os.Parcelable
 import androidx.annotation.DrawableRes
