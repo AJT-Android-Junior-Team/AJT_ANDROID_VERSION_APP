@@ -11,12 +11,12 @@ import com.ajt.android_version_app.presentation.models.AndroidVersion
 import com.ajt.android_version_app.R
 import com.ajt.android_version_app.presentation.models.MainViewModel
 
-class AndroidAdapter(val viewModel: MainViewModel) : RecyclerView.Adapter<AndroidAdapter.ViewHolder>() {
+class AndroidAdapter(private val viewModel: MainViewModel) : RecyclerView.Adapter<AndroidAdapter.ViewHolder>() {
     private var androidVersionsList = ArrayList<AndroidVersion>()
 
     override fun getItemCount() = androidVersionsList.size
 
-    private fun getItem(position: Int) : AndroidVersion = androidVersionsList[position]
+    private fun getItem(position: Int): AndroidVersion = androidVersionsList[position]
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
         ViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.item, parent, false))
@@ -24,7 +24,7 @@ class AndroidAdapter(val viewModel: MainViewModel) : RecyclerView.Adapter<Androi
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bind(getItem(position))
         holder.itemView.setOnClickListener {
-            viewModel.liveData.value = getItem(position)
+            viewModel.liveData.setValue(getItem(position))
         }
     }
 
@@ -34,9 +34,9 @@ class AndroidAdapter(val viewModel: MainViewModel) : RecyclerView.Adapter<Androi
         notifyItemInserted(androidVersionsList.size)
     }
 
-    class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        private val itemName : TextView? = view.findViewById(R.id.android_name)
-        private val itemImage : ImageView? = view.findViewById(R.id.android_image)
+    class ViewHolder(view: View): RecyclerView.ViewHolder(view) {
+        private val itemName: TextView? = view.findViewById(R.id.android_name)
+        private val itemImage: ImageView? = view.findViewById(R.id.android_image)
 
         fun bind(androidVersion: AndroidVersion) {
             itemName?.text = androidVersion.versionName

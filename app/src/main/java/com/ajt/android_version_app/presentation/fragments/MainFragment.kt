@@ -1,9 +1,11 @@
 package com.ajt.android_version_app.presentation.fragments
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.ajt.android_version_app.R
@@ -13,44 +15,42 @@ import com.ajt.android_version_app.presentation.adapters.AndroidAdapter
 import com.ajt.android_version_app.presentation.models.MainViewModel
 
 class MainFragment : Fragment(R.layout.fragment_main) {
-    private val fragmentViewModel : MainViewModel by activityViewModels()
-    private var adapter : AndroidAdapter? = null
+    private val fragmentViewModel: MainViewModel by activityViewModels()
+    private var adapter: AndroidAdapter? = null
 
-    /* View elements */
-    private var rvList: RecyclerView? = null
+    private var rvVersionsList: RecyclerView? = null
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initView(view)
-        initRv(DataStorage.getVersionsList())
+        initAndroidVersionList(DataStorage.getVersionsList())
+        fragmentViewModel.liveData.observe(viewLifecycleOwner) {
+            Log.d("myLog", "Open Details")
+            findNavController().navigate(R.id.action_mainFragment_to_detailsFragment)
+        }
     }
 
-    private fun initRv(versionsList: List<AndroidVersion>) {
+    private fun initAndroidVersionList(versionsList: List<AndroidVersion>) {
         adapter = AndroidAdapter(fragmentViewModel)
-        rvList?.layoutManager = LinearLayoutManager(context)
-        rvList?.adapter = adapter
+        rvVersionsList?.layoutManager = LinearLayoutManager(context)
+        rvVersionsList?.adapter = adapter
         addAndroid(versionsList)
     }
 
     override fun onDestroyView() {
-        rvList = null
+        rvVersionsList = null
         adapter = null
 
         super.onDestroyView()
     }
 
     private fun initView(view: View) {
-        rvList = view.findViewById(R.id.recyclerViewMain)
+        rvVersionsList = view.findViewById(R.id.rv_android_version)
     }
 
     private fun addAndroid(androidVersionsList: List<AndroidVersion>) {
         androidVersionsList.forEach {
             adapter?.addAndroid(it)
         }
-    }
-
-    companion object {
-        @JvmStatic
-        fun newInstance() = MainFragment()
     }
 }
