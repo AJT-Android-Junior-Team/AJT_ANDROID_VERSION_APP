@@ -1,8 +1,8 @@
 <resources>
     <string name="app_name">ANDROID VERSION APP</string>
-    <string name="cd_android_logo">Android logo</string>
-    <string name="cd_android_name">Android version name</string>
-    <string name="cd_background_image">Android poster</string>
+    <string name="content_description_android_logo">Android logo</string>
+    <string name="content_description_android_name">Android version name</string>
+    <string name="content_description_background_image">Android poster</string>
     <string name="details_button_text">trailer</string>
     <string name="overview_text">Overview</string>
 </resources>

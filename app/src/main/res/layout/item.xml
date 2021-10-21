@@ -9,13 +9,12 @@
     android:focusable="true">
 
     <androidx.cardview.widget.CardView
+        style="@style/Item_card"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginVertical="6dp"
         android:layout_marginStart="10dp"
-        android:layout_marginTop="6dp"
         android:layout_marginEnd="10dp"
-        android:layout_marginBottom="6dp"
-        android:backgroundTint="@color/back_second"
         android:foreground="?android:attr/selectableItemBackground"
         app:cardCornerRadius="10dp"
         app:cardElevation="5dp"
@@ -30,26 +29,26 @@
             android:padding="10dp">
 
             <com.google.android.material.imageview.ShapeableImageView
+                style="@style/ImageViewCircle"
                 android:id="@+id/android_image"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
-                android:contentDescription="@string/cd_android_logo"
+                android:contentDescription="@string/content_description_android_logo"
                 android:padding="3dp"
                 android:scaleType="centerCrop"
                 app:layout_constraintDimensionRatio="w,1:1"
                 app:shapeAppearanceOverlay="@style/ImageViewCircle"
-                app:strokeColor="@color/purple_700"
                 app:strokeWidth="3dp"
                 tools:src="@tools:sample/avatars" />
 
             <TextView
+                style="@style/Item_card"
                 android:id="@+id/android_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:contentDescription="@string/cd_android_name"
+                android:contentDescription="@string/content_description_android_name"
                 android:gravity="center"
-                android:textColor="@color/purple_700"
                 android:textSize="20sp"
                 android:textStyle="bold"
                 tools:text="@tools:sample/full_names" />

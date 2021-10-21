@@ -9,9 +9,8 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.ajt.android_version_app.presentation.models.AndroidVersion
 import com.ajt.android_version_app.R
-import com.ajt.android_version_app.presentation.models.MainViewModel
 
-class AndroidAdapter(private val viewModel: MainViewModel) : RecyclerView.Adapter<AndroidAdapter.ViewHolder>() {
+class AndroidAdapter(private val onClickListener: (position: AndroidVersion) -> Unit) : RecyclerView.Adapter<AndroidAdapter.ViewHolder>() {
     private var androidVersionsList = ArrayList<AndroidVersion>()
 
     override fun getItemCount() = androidVersionsList.size
@@ -24,7 +23,7 @@ class AndroidAdapter(private val viewModel: MainViewModel) : RecyclerView.Adapte
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bind(getItem(position))
         holder.itemView.setOnClickListener {
-            viewModel.liveData.setValue(getItem(position))
+            onClickListener(getItem(position))
         }
     }
 

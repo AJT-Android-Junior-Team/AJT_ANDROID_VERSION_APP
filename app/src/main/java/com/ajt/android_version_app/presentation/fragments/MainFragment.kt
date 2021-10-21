@@ -1,12 +1,10 @@
 package com.ajt.android_version_app.presentation.fragments
 
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.ajt.android_version_app.R
 import com.ajt.android_version_app.presentation.models.AndroidVersion
@@ -24,17 +22,31 @@ class MainFragment : Fragment(R.layout.fragment_main) {
         super.onViewCreated(view, savedInstanceState)
         initView(view)
         initAndroidVersionList(DataStorage.getVersionsList())
+        subscribeToViewModelObservables()
+    }
+
+    private fun initView(view: View) {
+        rvVersionsList = view.findViewById(R.id.rv_android_version)
+    }
+
+    private fun initAndroidVersionList(versionsList: List<AndroidVersion>) {
+        adapter = AndroidAdapter { androidItem ->
+            fragmentViewModel.liveData.setValue(androidItem)
+        }
+        rvVersionsList?.adapter = adapter
+        addAndroid(versionsList)
+    }
+
+    private fun subscribeToViewModelObservables() {
         fragmentViewModel.liveData.observe(viewLifecycleOwner) {
-            Log.d("myLog", "Open Details")
             findNavController().navigate(R.id.action_mainFragment_to_detailsFragment)
         }
     }
 
-    private fun initAndroidVersionList(versionsList: List<AndroidVersion>) {
-        adapter = AndroidAdapter(fragmentViewModel)
-        rvVersionsList?.layoutManager = LinearLayoutManager(context)
-        rvVersionsList?.adapter = adapter
-        addAndroid(versionsList)
+    private fun addAndroid(androidVersionsList: List<AndroidVersion>) {
+        androidVersionsList.forEach {
+            adapter?.addAndroid(it)
+        }
     }
 
     override fun onDestroyView() {
@@ -42,15 +54,5 @@ class MainFragment : Fragment(R.layout.fragment_main) {
         adapter = null
 
         super.onDestroyView()
-    }
-
-    private fun initView(view: View) {
-        rvVersionsList = view.findViewById(R.id.rv_android_version)
-    }
-
-    private fun addAndroid(androidVersionsList: List<AndroidVersion>) {
-        androidVersionsList.forEach {
-            adapter?.addAndroid(it)
-        }
     }
 }
