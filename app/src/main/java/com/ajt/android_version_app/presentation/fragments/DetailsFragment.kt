@@ -7,12 +7,13 @@ import android.view.LayoutInflater
 import androidx.fragment.app.Fragment
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.ViewModelProvider
 import com.ajt.android_version_app.databinding.FragmentDetailsBinding
-import com.ajt.android_version_app.presentation.models.MainViewModel
+import com.ajt.android_version_app.presentation.models.MyViewModel
+import com.ajt.android_version_app.presentation.models.MyViewModelFactory
 
 class DetailsFragment : Fragment() {
-    private val fragmentViewModel: MainViewModel by activityViewModels()
+    private lateinit var detailsFragmentViewModel: MyViewModel
     private var detailsBinding: FragmentDetailsBinding? = null
 
     override fun onCreateView(
@@ -26,11 +27,12 @@ class DetailsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        detailsFragmentViewModel = ViewModelProvider(requireActivity(), MyViewModelFactory()).get(MyViewModel::class.java)
         setData()
     }
 
     private fun setData() {
-        fragmentViewModel.liveData.value?.let { androidVersion ->
+        detailsFragmentViewModel.liveData.value?.let { androidVersion ->
             detailsBinding?.apply {
                 backgroundImage.setImageResource(androidVersion.posterAndroid)
                 androidImage.setImageResource(androidVersion.imageAndroid)

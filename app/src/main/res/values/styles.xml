@@ -1,7 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
     <style name="ImageViewCircle">
         <item name="cornerSize">12%</item>
+        <item name="strokeColor">@color/green_dark</item>
+    </style>
+
+    <style name="Item_card">
+        <item name="android:textColor">@color/green_dark</item>
+        <item name="android:backgroundTint">?attr/colorOnSurface</item>
+    </style>
+
+    <style name="details_fragment_style">
+        <item name="android:textColor">@color/green_dark</item>
+        <item name="android:background">@color/white_dark</item>
     </style>
 </resources>

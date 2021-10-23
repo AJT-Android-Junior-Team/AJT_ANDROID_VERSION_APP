@@ -118,18 +118,20 @@ object DataStorage {
                 "Kitkat",
                 R.drawable.kitkat,
                 R.drawable.poster,
-                "Late-2013's KitKat release marked the end of Android's dark era, as the blacks of Gingerbread and the " +
-                        "blues of Honeycomb finally made their way out of the operating system. Lighter backgrounds and more " +
-                        "neutral highlights took their places, with a transparent status bar and white icons giving the OS a" +
-                        " more contemporary appearance.\n" +
+                "Android KitKat is the codename for the eleventh Android mobile operating system, representing release version 4.4." +
+                        "Unveiled on September 3, 2013, KitKat focused primarily on optimizing the operating system for improved performance on entry-level devices with limited resources.\n" +
+                        "\nHistory\nAndroid 4.4 \"KitKat\" was officially announced on September 3, 2013. The release was internally codenamed \"Key lime pie\"; John Lagerling, director of Android global partnerships, and his team, decided to drop the name, arguing that \"very few people actually know the taste of a key lime pie\". Aiming for a codename that was \"fun and unexpected\", his team pursued the possibility of naming the release \"KitKat\" instead. Lagerling phoned a representative of Nestlé, who owns the Kit Kat brand and produces the confectionary (outside the United States, where it is produced by The Hershey Company under license), and quickly reached a preliminary deal for a promotional collaboration between the two companies, later finalized in a meeting at Mobile World Congress in February 2013. The partnership was not revealed publicly, or even to other Google employees and Android developers (who otherwise continued to internally refer to the OS as \"KLP\"), until its official announcement in September.\n" +
+                        "\nDevelopment\nContinuing on from the focus on improving visual performance and responsiveness on Android 4.1 \"Jelly Bean\", the main objective of Android 4.4 was to optimize the platform for better performance on low-end devices, without compromising its overall capabilities and functionality. The initiative was codenamed \"Project Svelte\", which Android head of engineering Dave Burke joked was a weight loss plan after Jelly Bean's \"Project Butter\" added \"weight\" to the OS.[10] To simulate lower-spec devices, Android developers used Nexus 4 devices underclocked to run at a reduced CPU speed with only a single core active, 512 MB memory, and at 960×540 display resolution—specifications meant to represent a common low-end Android device.\n" +
+                        "A development tool known as ProcStats was developed in order to analyze the memory usage of apps over time, especially those that run background services. This data was used to optimize and decouple Google apps and services found to be inefficient, thus helping to reduce the overall memory usage of Android. Additionally, 4.4 was designed to be more aggressive in managing memory, helping to guard against apps wasting too much memory.\n" +
+                        "\nUser experience\nThe overall interface of KitKat further downplays the \"Holo\" interface appearance introduced on 4.0, replacing remaining instances of blue accenting with greys and white (such as the status bar icons), and getting rid of the Wi-Fi upstream and downstream traffic indicators (triangles pointing up and down), though they can still be seen in the quick control center menu.[12]\n" +
                         "\n" +
-                        "Android 4.4 also saw the first version of \"OK, Google\" support — but in KitKat, the hands-free " +
-                        "activation prompt worked only when your screen was already on and you were either at your home screen " +
-                        "or inside the Google app.\n" +
+                        "The Wi-Fi icon colour when only a connection to an access point with no Internet access has been established has changed from grey to orange.[13]\n" +
                         "\n" +
-                        "The release was Google's first foray into claiming a full panel of the home screen for its services, " +
-                        "too — at least, for users of its own Nexus phones and those who chose to download its first-ever " +
-                        "standalone launcher.",
+                        "The appearance may deviate in custom vendor distributions such as TouchWiz.\n" +
+                        "\n" +
+                        "Apps may trigger a translucent status and navigation bar appearance, or trigger a full screen mode (\"Immersive mode\") to hide them entirely. The launcher also received a refreshed appearance, with the implementation of the translucent navigation bars, and the replacement of the black backdrop in the application drawer with a translucent backdrop.[14][15] Additionally, action overflow menu buttons in apps are always visible, even on devices with the deprecated \"Menu\" navigation key.[16] In the Settings menu, users can now specify a default Home (launcher) and text messaging app.[17]\n" +
+                        "\n" +
+                        "On stock devices, the Messaging and Movie Studio apps were removed; the former was replaced by Google Hangouts, which supported SMS. The AOSP Gallery app was also deprecated in favor of Google+ Photos.",
                 "October 31, 2013",
                 "https://www.youtube.com/watch?v=sONcojECWXs"
             ),
