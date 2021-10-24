@@ -9,9 +9,9 @@ class SingleLiveData<T> : MutableLiveData<T>() {
     private val pending = AtomicBoolean()
 
     override fun observe(owner: LifecycleOwner, observer: Observer<in T>) {
-        super.observe(owner, { observerLambda ->
+        super.observe(owner, { observer_t ->
             if (pending.compareAndSet(true, false)) {
-                observer.onChanged(observerLambda)
+                observer.onChanged(observer_t)
             }
         })
     }

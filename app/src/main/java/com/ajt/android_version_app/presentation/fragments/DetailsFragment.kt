@@ -9,11 +9,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 import com.ajt.android_version_app.databinding.FragmentDetailsBinding
-import com.ajt.android_version_app.presentation.models.MyViewModel
-import com.ajt.android_version_app.presentation.models.MyViewModelFactory
+import com.ajt.android_version_app.presentation.models.AndroidVersionViewModel
+import com.ajt.android_version_app.presentation.models.AndroidVersionViewModelFactory
 
 class DetailsFragment : Fragment() {
-    private lateinit var detailsFragmentViewModel: MyViewModel
+    private lateinit var detailsFragmentViewModel: AndroidVersionViewModel
     private var detailsBinding: FragmentDetailsBinding? = null
 
     override fun onCreateView(
@@ -27,7 +27,7 @@ class DetailsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        detailsFragmentViewModel = ViewModelProvider(requireActivity(), MyViewModelFactory()).get(MyViewModel::class.java)
+        detailsFragmentViewModel = ViewModelProvider(requireActivity(), AndroidVersionViewModelFactory()).get(AndroidVersionViewModel::class.java)
         setData()
     }
 
