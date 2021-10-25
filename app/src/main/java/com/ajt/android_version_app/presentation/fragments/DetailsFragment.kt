@@ -29,7 +29,7 @@ class DetailsFragment : Fragment() {
         return detailsBinding?.root
     }
 
-    fun initParams() {
+    private fun initParams() {
         detailsFragmentViewModel = ViewModelProvider(
             requireActivity(),
             DetailsFragmentViewModelFactory(args.androidVersionPosition)
