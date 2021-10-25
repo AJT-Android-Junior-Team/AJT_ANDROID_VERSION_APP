@@ -7,46 +7,43 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.ajt.android_version_app.R
-import com.ajt.android_version_app.presentation.models.AndroidVersion
-import com.ajt.android_version_app.presentation.models.DataStorage
 import com.ajt.android_version_app.presentation.adapters.AndroidAdapter
-import com.ajt.android_version_app.presentation.models.AndroidVersionViewModel
-import com.ajt.android_version_app.presentation.models.AndroidVersionViewModelFactory
+import com.ajt.android_version_app.presentation.models.DataStorage
+import com.ajt.android_version_app.presentation.models.MainFragmentViewModel
+import com.ajt.android_version_app.presentation.models.MainFragmentViewModelFactory
 
 class MainFragment : Fragment(R.layout.fragment_main) {
-    private var mainFragmentViewModel: AndroidVersionViewModel? = null
+    private var mainFragmentViewModel: MainFragmentViewModel? = null
     private var rvVersionsList: RecyclerView? = null
     private var rvAndroidAdapter: AndroidAdapter? = null
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        initView(view)
+        initParams(view)
         subscribeToViewModelObservables()
     }
 
-    private fun initView(view: View) {
-        mainFragmentViewModel = ViewModelProvider(requireActivity(), AndroidVersionViewModelFactory()).get(AndroidVersionViewModel::class.java)
+    private fun initParams(view: View) {
+        mainFragmentViewModel = ViewModelProvider(
+            requireActivity(),
+            MainFragmentViewModelFactory(DataStorage.getVersionsList())
+        ).get(MainFragmentViewModel::class.java)
         rvVersionsList = view.findViewById(R.id.rv_android_version)
-        initAndroidVersionList(DataStorage.getVersionsList())
-    }
-
-    private fun initAndroidVersionList(versionsList: List<AndroidVersion>) {
-        rvAndroidAdapter = AndroidAdapter { androidItem ->
-            mainFragmentViewModel?.liveData?.setValue(androidItem)
+        rvAndroidAdapter = AndroidAdapter { androidItemPosition ->
+            mainFragmentViewModel?.setAndroidPosition(androidItemPosition)
         }
         rvVersionsList?.adapter = rvAndroidAdapter
-        addAndroid(versionsList)
-    }
-
-    private fun addAndroid(androidVersionsList: List<AndroidVersion>) {
-        androidVersionsList.forEach {
-            rvAndroidAdapter?.addAndroid(it)
-        }
     }
 
     private fun subscribeToViewModelObservables() {
-        mainFragmentViewModel?.liveData?.observe(viewLifecycleOwner) {
-            findNavController().navigate(R.id.action_mainFragment_to_detailsFragment)
+        mainFragmentViewModel?.apply {
+            androidVersionPosition.observe(viewLifecycleOwner) { position ->
+                val action = MainFragmentDirections.actionMainFragmentToDetailsFragment(position)
+                findNavController().navigate(action)
+            }
+            androidVersionList.observe(viewLifecycleOwner) { androidVersionList ->
+                rvAndroidAdapter?.addAndroidList(androidVersionList)
+            }
         }
     }
 

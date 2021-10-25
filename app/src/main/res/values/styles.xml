@@ -7,7 +7,7 @@
 
     <style name="Item_card">
         <item name="android:textColor">@color/green_dark</item>
-        <item name="android:backgroundTint">?attr/colorOnSurface</item>
+        <item name="android:backgroundTint">@color/white_dark</item>
     </style>
 
     <style name="details_fragment_style">

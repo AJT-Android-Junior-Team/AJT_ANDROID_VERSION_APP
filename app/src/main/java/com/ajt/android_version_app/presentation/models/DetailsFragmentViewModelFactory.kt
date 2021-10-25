@@ -4,10 +4,10 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import java.lang.IllegalArgumentException
 
-class AndroidVersionViewModelFactory() : ViewModelProvider.Factory {
+class DetailsFragmentViewModelFactory(private val idAndroidItem: Int) : ViewModelProvider.Factory {
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-        if (modelClass.isAssignableFrom(AndroidVersionViewModel::class.java)) {
-            return AndroidVersionViewModel() as T
+        if (modelClass.isAssignableFrom(DetailsFragmentViewModel::class.java)) {
+            return DetailsFragmentViewModel(idAndroidItem = idAndroidItem) as T
         }
         throw IllegalArgumentException("Unknown ViewModel class")
     }

@@ -3,6 +3,10 @@ package com.ajt.android_version_app.presentation.models
 import com.ajt.android_version_app.R
 
 object DataStorage {
+    fun getVersionByPosition(position: Int): AndroidVersion {
+        return getVersionsList()[position]
+    }
+
     fun getVersionsList(): List<AndroidVersion> {
         return listOf(
             AndroidVersion(
