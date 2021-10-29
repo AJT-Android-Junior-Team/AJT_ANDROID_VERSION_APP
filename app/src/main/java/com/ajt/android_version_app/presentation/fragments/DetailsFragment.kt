@@ -4,48 +4,64 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
-import androidx.fragment.app.Fragment
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.navArgs
 import com.ajt.android_version_app.databinding.FragmentDetailsBinding
-import com.ajt.android_version_app.presentation.models.MainViewModel
+import com.ajt.android_version_app.presentation.models.AndroidVersionViewModelFactory
+import com.ajt.android_version_app.presentation.models.DataStorage
+import com.ajt.android_version_app.presentation.models.DetailsFragmentViewModel
 
 class DetailsFragment : Fragment() {
-    private val fragmentViewModel: MainViewModel by activityViewModels()
-    private var detailsBinding: FragmentDetailsBinding? = null
+    private var binding: FragmentDetailsBinding? = null
+    private val args: DetailsFragmentArgs by navArgs()
+    private val detailsFragmentViewModel: DetailsFragmentViewModel by lazy {
+        ViewModelProvider(
+            requireActivity(),
+            AndroidVersionViewModelFactory(listOf() ,args.androidVersionPosition)
+        ).get(DetailsFragmentViewModel::class.java)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        detailsBinding = FragmentDetailsBinding.inflate(inflater)
-        return detailsBinding?.root
+        binding = FragmentDetailsBinding.inflate(inflater)
+        return binding?.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        setArgsToViewModel()
         setData()
     }
 
+    private fun setArgsToViewModel() {
+        detailsFragmentViewModel.setItemPosition(args.androidVersionPosition)
+    }
+
     private fun setData() {
-        fragmentViewModel.liveData.value?.let { androidVersion ->
-            detailsBinding?.apply {
-                backgroundImage.setImageResource(androidVersion.posterAndroid)
-                androidImage.setImageResource(androidVersion.imageAndroid)
-                androidName.text = androidVersion.versionName
-                releaseDate.text = androidVersion.releaseDate
-                overviewText.text = androidVersion.overviewText
-                buttonVideo.setOnClickListener {
-                    openAndroidTrailer(androidVersion.trailerUrl)
+        detailsFragmentViewModel.androidItemPosition.value?.let { position ->
+            DataStorage.getVersionByPosition(position).let { androidVersion ->
+                binding?.apply {
+                    backgroundImage.setImageResource(androidVersion.posterAndroid)
+                    androidImage.setImageResource(androidVersion.imageAndroid)
+                    androidName.text = androidVersion.versionName
+                    releaseDate.text = androidVersion.releaseDate
+                    overviewText.text = androidVersion.overviewText
+                    buttonVideo.setOnClickListener {
+                        openAndroidTrailer(androidVersion.trailerUrl)
+                    }
                 }
             }
         }
     }
 
     override fun onDestroyView() {
-        detailsBinding = null
+        binding = null
         super.onDestroyView()
     }
 

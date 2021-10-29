@@ -7,7 +7,7 @@
     android:background="@color/white"
     tools:context=".presentation.fragments.DetailsFragment">
 
-    <ScrollView
+    <androidx.core.widget.NestedScrollView
         android:id="@+id/scroll_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -16,15 +16,15 @@
         tools:ignore="UselessParent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
+            style="@style/details_fragment_style"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/back_second">
+            android:layout_height="wrap_content">
 
             <ImageView
                 android:id="@+id/background_image"
                 android:layout_width="0dp"
                 android:layout_height="250dp"
-                android:contentDescription="@string/cd_background_image"
+                android:contentDescription="@string/content_description_background_image"
                 android:scaleType="centerCrop"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
@@ -34,27 +34,27 @@
 
             <com.google.android.material.imageview.ShapeableImageView
                 android:id="@+id/android_image"
+                style="@style/image_view_circle"
                 android:layout_width="128dp"
                 android:layout_height="0dp"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="24dp"
-                android:contentDescription="@string/cd_android_logo"
+                android:contentDescription="@string/content_description_android_logo"
                 android:padding="3dp"
                 android:scaleType="centerCrop"
                 app:layout_constraintDimensionRatio="h,4:4"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/background_image"
-                app:shapeAppearanceOverlay="@style/ImageViewCircle"
-                app:strokeColor="@color/purple_700"
+                app:shapeAppearanceOverlay="@style/image_view_circle"
                 app:strokeWidth="5dp"
                 tools:srcCompat="@tools:sample/avatars" />
 
             <TextView
                 android:id="@+id/android_name"
+                style="@style/details_fragment_style"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="20dp"
-                android:textColor="@color/purple_700"
                 android:textSize="20sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toTopOf="@+id/release_date"
@@ -96,17 +96,23 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/android_image" />
 
-            <TextView
-                android:id="@+id/overview_text"
+            <androidx.core.widget.NestedScrollView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:paddingBottom="20dp"
                 app:layout_constraintEnd_toEndOf="@+id/button_video"
                 app:layout_constraintStart_toStartOf="@+id/overview_label"
-                app:layout_constraintTop_toBottomOf="@id/overview_label"
-                tools:text="@tools:sample/lorem/random" />
+                app:layout_constraintTop_toBottomOf="@id/overview_label">
+
+                <TextView
+                    android:id="@+id/overview_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    tools:text="@tools:sample/lorem/random" />
+            </androidx.core.widget.NestedScrollView>
+
 
         </androidx.constraintlayout.widget.ConstraintLayout>
-    </ScrollView>
+    </androidx.core.widget.NestedScrollView>
 </FrameLayout>
