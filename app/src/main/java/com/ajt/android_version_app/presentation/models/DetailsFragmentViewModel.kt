@@ -11,5 +11,7 @@ class DetailsFragmentViewModel(idAndroidItem: Int) : ViewModel() {
         _androidItemPosition.setValue(idAndroidItem)
     }
 
-    fun setValueToLiveData(idAndroidItem: Int) = _androidItemPosition.setValue(idAndroidItem)
+    fun setItemPosition(idAndroidItem: Int) {
+        _androidItemPosition.setValue(idAndroidItem)
+    }
 }

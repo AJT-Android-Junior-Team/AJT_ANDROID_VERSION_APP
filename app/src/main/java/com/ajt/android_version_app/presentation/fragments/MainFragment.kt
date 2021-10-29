@@ -10,12 +10,17 @@ import com.ajt.android_version_app.R
 import com.ajt.android_version_app.presentation.adapters.AndroidAdapter
 import com.ajt.android_version_app.presentation.models.DataStorage
 import com.ajt.android_version_app.presentation.models.MainFragmentViewModel
-import com.ajt.android_version_app.presentation.models.MainFragmentViewModelFactory
+import com.ajt.android_version_app.presentation.models.AndroidVersionViewModelFactory
 
 class MainFragment : Fragment(R.layout.fragment_main) {
-    private var mainFragmentViewModel: MainFragmentViewModel? = null
     private var rvVersionsList: RecyclerView? = null
     private var rvAndroidAdapter: AndroidAdapter? = null
+    private val mainFragmentViewModel: MainFragmentViewModel by lazy {
+        ViewModelProvider(
+            requireActivity(),
+            AndroidVersionViewModelFactory(DataStorage.getVersionsList(), 0)
+        ).get(MainFragmentViewModel::class.java)
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -24,19 +29,15 @@ class MainFragment : Fragment(R.layout.fragment_main) {
     }
 
     private fun initParams(view: View) {
-        mainFragmentViewModel = ViewModelProvider(
-            requireActivity(),
-            MainFragmentViewModelFactory(DataStorage.getVersionsList())
-        ).get(MainFragmentViewModel::class.java)
         rvVersionsList = view.findViewById(R.id.rv_android_version)
         rvAndroidAdapter = AndroidAdapter { androidItemPosition ->
-            mainFragmentViewModel?.setAndroidPosition(androidItemPosition)
+            mainFragmentViewModel.setAndroidPosition(androidItemPosition)
         }
         rvVersionsList?.adapter = rvAndroidAdapter
     }
 
     private fun subscribeToViewModelObservables() {
-        mainFragmentViewModel?.apply {
+        mainFragmentViewModel.apply {
             androidVersionPosition.observe(viewLifecycleOwner) { position ->
                 val action = MainFragmentDirections.actionMainFragmentToDetailsFragment(position)
                 findNavController().navigate(action)
@@ -48,7 +49,6 @@ class MainFragment : Fragment(R.layout.fragment_main) {
     }
 
     override fun onDestroyView() {
-        mainFragmentViewModel = null
         rvVersionsList = null
         rvAndroidAdapter = null
 

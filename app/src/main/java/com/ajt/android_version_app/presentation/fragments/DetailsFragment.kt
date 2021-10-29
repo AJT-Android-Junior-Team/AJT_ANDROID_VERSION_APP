@@ -10,42 +10,43 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.navArgs
 import com.ajt.android_version_app.databinding.FragmentDetailsBinding
+import com.ajt.android_version_app.presentation.models.AndroidVersionViewModelFactory
 import com.ajt.android_version_app.presentation.models.DataStorage
 import com.ajt.android_version_app.presentation.models.DetailsFragmentViewModel
-import com.ajt.android_version_app.presentation.models.DetailsFragmentViewModelFactory
 
 class DetailsFragment : Fragment() {
-    private lateinit var detailsFragmentViewModel: DetailsFragmentViewModel
-    private var detailsBinding: FragmentDetailsBinding? = null
+    private var binding: FragmentDetailsBinding? = null
     private val args: DetailsFragmentArgs by navArgs()
+    private val detailsFragmentViewModel: DetailsFragmentViewModel by lazy {
+        ViewModelProvider(
+            requireActivity(),
+            AndroidVersionViewModelFactory(listOf() ,args.androidVersionPosition)
+        ).get(DetailsFragmentViewModel::class.java)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        detailsBinding = FragmentDetailsBinding.inflate(inflater)
-        initParams()
-        return detailsBinding?.root
-    }
-
-    private fun initParams() {
-        detailsFragmentViewModel = ViewModelProvider(
-            requireActivity(),
-            DetailsFragmentViewModelFactory(args.androidVersionPosition)
-        ).get(DetailsFragmentViewModel::class.java)
-        detailsFragmentViewModel.setValueToLiveData(args.androidVersionPosition)
+        binding = FragmentDetailsBinding.inflate(inflater)
+        return binding?.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        setArgsToViewModel()
         setData()
+    }
+
+    private fun setArgsToViewModel() {
+        detailsFragmentViewModel.setItemPosition(args.androidVersionPosition)
     }
 
     private fun setData() {
         detailsFragmentViewModel.androidItemPosition.value?.let { position ->
             DataStorage.getVersionByPosition(position).let { androidVersion ->
-                detailsBinding?.apply {
+                binding?.apply {
                     backgroundImage.setImageResource(androidVersion.posterAndroid)
                     androidImage.setImageResource(androidVersion.imageAndroid)
                     androidName.text = androidVersion.versionName
@@ -60,7 +61,7 @@ class DetailsFragment : Fragment() {
     }
 
     override fun onDestroyView() {
-        detailsBinding = null
+        binding = null
         super.onDestroyView()
     }
 

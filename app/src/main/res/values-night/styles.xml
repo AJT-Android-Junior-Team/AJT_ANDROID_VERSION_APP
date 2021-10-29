@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <style name="ImageViewCircle">
+    <style name="image_view_circle">
         <item name="cornerSize">12%</item>
         <item name="strokeColor">@color/white_dark</item>
     </style>
 
-    <style name="Item_card">
+    <style name="item_card">
         <item name="android:textColor">@color/white_dark</item>
         <item name="android:backgroundTint">@color/gray_light</item>
     </style>

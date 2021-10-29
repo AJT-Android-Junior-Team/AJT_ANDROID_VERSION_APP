@@ -15,7 +15,7 @@ class MainFragmentViewModel(androidVersionsList: List<AndroidVersion>) : ViewMod
         _androidVersionList.value = androidVersionsList
     }
 
-    fun setAndroidListLiveData(androidVersionsList: List<AndroidVersion>) {
+    fun setAndroidVersionList(androidVersionsList: List<AndroidVersion>) {
         _androidVersionList.value = androidVersionsList
     }
 
